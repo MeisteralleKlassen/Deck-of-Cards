@@ -22,13 +22,13 @@ self.addEventListener('install', (event) => {
 });
   
 self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      // Wenn es eine gecachte Antwort gibt, diese verwenden, sonst aus dem Netzwerk laden
-      return cachedResponse || fetch(event.request);
-    })
-  );
+    event.respondWith(
+        caches.match(event.request).then((cachedResponse) => {
+            return cachedResponse || fetch(event.request).catch(() => caches.match('/offline.html'));
+        })
+    );
 });
+
 
 self.addEventListener('activate', (event) => {
   console.log('Service Worker aktiviert');
