@@ -8,10 +8,10 @@ self.addEventListener('install', (event) => {
           try {
               await cache.addAll([
                   '/',
-                  '/Deck of Cards/index.html',
-                  '/Deck of Cards/styles.css',
-                  '/Deck of Cards/script.js',
-                  '/Deck of Cards/figures/bg1.png',
+                  '/index.html',
+                  '/styles.css',
+                  '/script.js',
+                  '/figures/bg1.png',
               ]);
               console.log('Alle Ressourcen zwischengespeichert.');
           } catch (error) {
