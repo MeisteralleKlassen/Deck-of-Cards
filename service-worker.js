@@ -7,11 +7,11 @@ self.addEventListener('install', (event) => {
       caches.open('my-cache').then(async (cache) => {
           try {
               await cache.addAll([
-                  '/',
-                  '/index.html',
-                  '/styles.css',
-                  '/script.js',
-                  '/figures/bg1.png',
+                  './',
+                  './index.html',
+                  './styles.css',
+                  './script.js',
+                  './figures/bg1.png',
               ]);
               console.log('Alle Ressourcen zwischengespeichert.');
           } catch (error) {
