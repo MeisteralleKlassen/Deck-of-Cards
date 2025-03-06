@@ -1,0 +1,22 @@
+{
+    "name": "Kartenspiel",
+    "short_name": "Kartenspiel",
+    "description": "Ein einfaches Kartenspiel",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#b20b12",
+    "icons": [
+      {
+        "src": "./Deck of Cards/figures/icon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "./Deck of Cards/figures/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
