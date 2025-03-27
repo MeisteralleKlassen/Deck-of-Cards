@@ -106,28 +106,31 @@ if ('serviceWorker' in navigator) {
 }
 
 
-let deferredPrompt;
+document.addEventListener('DOMContentLoaded', () => {
+    let deferredPrompt;
 
-window.addEventListener('beforeinstallprompt', (event) => {
-    event.preventDefault();
-    deferredPrompt = event;  // Speichert das Event für später
-    document.getElementById('installButton').style.display = 'block';
-});
+    window.addEventListener('beforeinstallprompt', (event) => {
+        event.preventDefault();
+        deferredPrompt = event;
+        document.getElementById('installButton').style.display = 'block';
+    });
 
-document.getElementById('installButton').addEventListener('click', () => {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User hat die App installiert');
-            } else {
-                console.log('User hat die Installation abgelehnt');
-            }
-            deferredPrompt = null;
-        });
-    }
-});
-document.getElementById('installNo').addEventListener('click', () => {
-    document.getElementById('installPopup').style.display = 'none'; // Popup schließen
+    document.getElementById('installButton').addEventListener('click', () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User hat die App installiert');
+                } else {
+                    console.log('User hat die Installation abgelehnt');
+                }
+                deferredPrompt = null;
+            });
+        }
+    });
+
+    document.getElementById('installNo').addEventListener('click', () => {
+        document.getElementById('installPopup').style.display = 'none'; // Popup schließen
+    });
 });
 
