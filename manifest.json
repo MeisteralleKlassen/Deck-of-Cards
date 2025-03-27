@@ -2,7 +2,7 @@
     "name": "Kartenspiel",
     "short_name": "Kartenspiel",
     "description": "Ein einfaches Kartenspiel",
-    "start_url": "/",
+    "start_url": "/Deck-of-Cards/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#ffffff",
