@@ -127,30 +127,6 @@ document.getElementById('installButton').addEventListener('click', () => {
         });
     }
 });
-
-let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (event) => {
-    event.preventDefault();
-    deferredPrompt = event; // Speichert das Event für später
-    document.getElementById('installPopup').style.display = 'block'; // Popup anzeigen
-});
-
-document.getElementById('installYes').addEventListener('click', () => {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User hat die App installiert');
-            } else {
-                console.log('User hat die Installation abgelehnt');
-            }
-            deferredPrompt = null;
-        });
-    }
-    document.getElementById('installPopup').style.display = 'none'; // Popup schließen
-});
-
 document.getElementById('installNo').addEventListener('click', () => {
     document.getElementById('installPopup').style.display = 'none'; // Popup schließen
 });
