@@ -5,8 +5,8 @@ const assets = [
   "/Deck-of-Cards/style.css",
   "/Deck-of-Cards/script.js",
   "/Deck-of-Cards/manifest.json",
-  "/Deck-of-Cards/figures/icon-192x192.png",
-  "/Deck-of-Cards/figures/icon-512x512.png"
+  "/Deck-of-Cards/isons/icon-192x192.png",
+  "/Deck-of-Cards/icons/icon-512x512.png"
 ];
 
 self.addEventListener("install", event => {
