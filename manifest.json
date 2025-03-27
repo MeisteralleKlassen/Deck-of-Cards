@@ -1,18 +1,19 @@
 {
-  "name": "Deck of Cards",
-  "short_name": "Cards",
-  "start_url": "/Deck-of-Cards/",
+  "name": "Kartenspiel PWA",
+  "short_name": "Kartenspiel",
+  "description": "Ein einfaches Kartenspiel in einer PWA",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#ff0000",
   "icons": [
     {
-      "src": "/Deck-of-Cards/icons/icon-192x192.png",
+      "src": "images/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/Deck-of-Cards/icons/icon-512x512.png",
+      "src": "images/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
