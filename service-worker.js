@@ -1,37 +1,26 @@
-// service-worker.js
+const cacheName = "deck-of-cards-v1";
+const assets = [
+  "/Deck-of-Cards/",
+  "/Deck-of-Cards/index.html",
+  "/Deck-of-Cards/style.css",
+  "/Deck-of-Cards/script.js",
+  "/Deck-of-Cards/manifest.json",
+  "/Deck-of-Cards/icons/icon-192x192.png",
+  "/Deck-of-Cards/icons/icon-512x512.png"
+];
 
-
-self.addEventListener('install', (event) => {
-  console.log('Service Worker installiert');
+self.addEventListener("install", event => {
   event.waitUntil(
-      caches.open('my-cache').then(async (cache) => {
-          try {
-              await cache.addAll([
-                  './',
-                  './index.html',
-                  './styles.css',
-                  './script.js',
-                  './figures/bg1.png',
-              ]);
-              console.log('Alle Ressourcen zwischengespeichert.');
-          } catch (error) {
-              console.error('Caching fehlgeschlagen:', error);
-          }
-      })
-  );
-});
-  
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      // Wenn es eine gecachte Antwort gibt, diese verwenden, sonst aus dem Netzwerk laden
-      return cachedResponse || fetch(event.request);
+    caches.open(cacheName).then(cache => {
+      return cache.addAll(assets);
     })
   );
 });
 
-
-self.addEventListener('activate', (event) => {
-  console.log('Service Worker aktiviert');
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
 });
-  
