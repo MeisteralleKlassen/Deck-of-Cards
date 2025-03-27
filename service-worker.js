@@ -1,26 +1,24 @@
-const cacheName = "deck-of-cards-v1";
-const assets = [
-  "/Deck-of-Cards/",
-  "/Deck-of-Cards/index.html",
-  "/Deck-of-Cards/style.css",
-  "/Deck-of-Cards/script.js",
-  "/Deck-of-Cards/manifest.json",
-  "/Deck-of-Cards/isons/icon-192x192.png",
-  "/Deck-of-Cards/icons/icon-512x512.png"
+const cacheName = 'kartenspiel-pwa-cache-v1';
+const filesToCache = [
+  '/',
+  '/index.html',
+  '/style.css',
+  '/script.js',
+  '/images/background.jpg'
 ];
 
-self.addEventListener("install", event => {
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(cacheName).then(cache => {
-      return cache.addAll(assets);
+    caches.open(cacheName).then((cache) => {
+      return cache.addAll(filesToCache);
     })
   );
 });
 
-self.addEventListener("fetch", event => {
+self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+    caches.match(event.request).then((cachedResponse) => {
+      return cachedResponse || fetch(event.request);
     })
   );
 });
