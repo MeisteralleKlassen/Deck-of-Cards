@@ -4,7 +4,7 @@ const filesToCache = [
   '/index.html',
   '/style.css',
   '/script.js',
-  '/images/background.jpg'
+  '/figures/bg.png'
 ];
 
 self.addEventListener('install', (event) => {
