@@ -6,6 +6,11 @@ let interval;
 let isDeckEmpty = false;
 let times = [];
 
+// Neue Variablen für die Kartenanzeige
+let currentCard = "";
+let previousCardHTML = "";
+let previousCardColor = ""; // speichert die zuletzt verwendete Farbe
+
 function createDeck() {
     deck = [];
     for (let suit of suits) {
@@ -28,9 +33,17 @@ function updateTime() {
 interval = setInterval(updateTime, 1000);
 
 function drawCard() {
+    let cardElement = document.getElementById("card");
+
+    // Vorherige Karte und deren Farbe speichern, falls bereits eine Karte angezeigt wird
+    if (currentCard !== "") {
+        previousCardHTML = currentCard;
+        previousCardColor = cardElement.style.color;
+    }
+
     if (deck.length === 0) {
-        document.getElementById("card").innerHTML = "<span>All cards removed!</span>";
-        document.getElementById("card").style.color = "black";
+        cardElement.innerHTML = "<span>All cards removed!</span>";
+        cardElement.style.color = "black";
 
         if (!isDeckEmpty) {
             isDeckEmpty = true;
@@ -47,23 +60,33 @@ function drawCard() {
     let randomIndex = Math.floor(Math.random() * deck.length);
     let drawnCard = deck.splice(randomIndex, 1)[0];
 
-    let cardElement = document.getElementById("card");
-    cardElement.innerHTML = `
+    // Erzeuge den neuen Karteninhalt
+    currentCard = `
         <span class="card-value">${drawnCard.value.split(" ")[0]}</span>
         <span class="card-symbol">${drawnCard.suit}</span>
         <span class="card-value-bottom">${drawnCard.value.split(" ")[0]}</span>
     `;
+    cardElement.innerHTML = currentCard;
 
+    // Setze die Farbe abhängig vom Symbol
     let color = "black";
     if (drawnCard.suit === '♥' || drawnCard.suit === '♦') {
         color = "red";
-    } else if (drawnCard.suit === '♠') {
-        color = "green";
     } else if (drawnCard.suit === 'Joker') {
         color = "purple";
     }
 
     cardElement.style.color = color;
+}
+
+function showPreviousCard() {
+    if (previousCardHTML !== "") {
+        let cardElement = document.getElementById("card");
+        cardElement.innerHTML = previousCardHTML;
+        cardElement.style.color = previousCardColor;
+    } else {
+        alert("Es wurde noch keine vorherige Karte gespeichert!");
+    }
 }
 
 function stopTimer() {
@@ -78,10 +101,15 @@ function reshuffleDeck() {
     startTime = null;
     clearInterval(interval);
     interval = setInterval(updateTime, 1000);
-    document.getElementById("card").innerText = "Draw a card";
-    document.getElementById("card").style.color = "black";
+    let cardElement = document.getElementById("card");
+    cardElement.innerText = "Draw a card";
+    cardElement.style.color = "black";
     document.getElementById("timeElapsed").innerText = "Zeit: 0s";
     isDeckEmpty = false;
+    // Zurücksetzen der gespeicherten Karten und Farben
+    currentCard = "";
+    previousCardHTML = "";
+    previousCardColor = "";
 }
 
 function updateLeaderboard() {
