@@ -105,3 +105,11 @@ ul {
     font-size: 1.5rem;
     margin: 5px 0;
 }
+
+.show-previous {
+    margin-top: 35px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
